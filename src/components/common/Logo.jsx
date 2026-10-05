@@ -7,5 +7,5 @@ export function LogoMark({ size = 40 }) {
 }
 
 export default function Logo() {
-  return <span className="brand"><LogoMark /><span>Furniro</span></span>;
+  return <span className="brand"><LogoMark /><span>Arts git</span></span>;
 }

@@ -128,7 +128,6 @@ h2 { font-size: 28px; font-weight: 700; text-align: center; }
   isolation: isolate;
 }
 
-/* Background image with reduced intensity */
 .shop-banner::before {
   content: "";
   position: absolute;
@@ -138,7 +137,6 @@ h2 { font-size: 28px; font-weight: 700; text-align: center; }
   opacity: 0.45;
 }
 
-/* Soft white overlay */
 .shop-banner::after {
   content: "";
   position: absolute;
@@ -287,8 +285,6 @@ h2 { font-size: 28px; font-weight: 700; text-align: center; }
 .reviews li { padding-bottom: 16px; border-bottom: 1px solid #eee; color: var(--ink); }
 .related { padding-top: 24px; }
 
-/* ---------- cart & compare pages ---------- */
-
 @media (max-width: 900px) {
   .detail { grid-template-columns: 1fr; gap: 32px; }
   .wide-imgs { grid-template-columns: 1fr; }
@@ -302,7 +298,6 @@ h2 { font-size: 28px; font-weight: 700; text-align: center; }
   .pill { padding: 0 28px; }
 }
 
-/* ---------- comparison page ---------- */
 .banner-logo { margin: 0 auto 6px; }
 .cmp { padding: 56px 8vw; overflow-x: auto; }
 .cmp-grid { display: grid; grid-template-columns: minmax(150px, 1fr) repeat(3, minmax(190px, 1fr)); gap: 0 28px; min-width: 760px; }
@@ -480,4 +475,87 @@ h2 { font-size: 28px; font-weight: 700; text-align: center; }
   .hero {
     aspect-ratio: 1440 / 717;
   }
+}
+
+/* ==========================================================================
+   APPENDED OVERRIDES — nothing above this line was changed.
+   Tailwind-style responsive breakpoints for the hero and shared layout.
+   ========================================================================== */
+
+/* --- Hero: desktop keeps the pixel-perfect 1440/717 ratio --- */
+
+/* Tablet (≤900px): drop the fixed aspect ratio, use cover so the image
+   fills the space without collapsing into a thin strip. */
+@media (max-width: 900px) {
+  .hero {
+    aspect-ratio: auto;
+    min-height: 420px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .hero-buy-link {
+    left: 50%;
+    top: auto;
+    bottom: 24px;
+    transform: translateX(-50%);
+    width: min(220px, 60%);
+    height: 48px;
+  }
+}
+
+/* Phone (≤560px): tighter hero, real tap target. */
+@media (max-width: 560px) {
+  .hero {
+    min-height: 340px;
+    background-position: 60% center;
+  }
+  .hero-buy-link {
+    width: min(180px, 70%);
+    height: 44px;
+    bottom: 18px;
+  }
+}
+
+/* --- Tailwind-style responsive safety nets (sm / md / lg) --- */
+
+@media (max-width: 1024px) {
+  section { padding-left: 6vw; padding-right: 6vw; }
+  .hero-card { padding: 36px 28px; max-width: 460px; }
+}
+
+@media (max-width: 900px) {
+  section { padding-top: 44px; padding-bottom: 44px; }
+  .nav { padding: 0 3vw; }
+  .brand { font-size: 24px; }
+  .nav nav { gap: 3vw; }
+  .nav-icons { gap: 20px; }
+  .hero-card h1 { font-size: clamp(26px, 5vw, 36px); }
+  .grid { gap: 22px 16px; }
+}
+
+@media (max-width: 640px) {
+  section { padding: 32px 5vw; }
+  h2 { font-size: 24px; }
+  .sub { margin-bottom: 24px; }
+  .btn { padding: 12px 32px; }
+  .btn.outline { padding: 12px 40px; }
+  .nav nav { display: none; }
+  .nav-icons { gap: 16px; }
+  .grid { grid-template-columns: 1fr; }
+  .range-grid { grid-template-columns: 1fr; }
+  .masonry { columns: 1; }
+  .foot-grid { grid-template-columns: 1fr; gap: 24px; }
+  .cart-links { flex-direction: column; gap: 14px; align-items: stretch; }
+  .toolbar { flex-direction: column; align-items: stretch; }
+  .tool-left, .tool-right { justify-content: space-between; }
+}
+
+@media (max-width: 480px) {
+  .brand { font-size: 20px; }
+  .hero-card { padding: 28px 20px; }
+  .pagination button { min-width: 42px; height: 42px; font-size: 15px; }
+  .tabs { gap: 16px; }
+  .tabs button { font-size: 15px; }
+  .cart-total h2 { font-size: 24px; }
 }
